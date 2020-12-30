@@ -34,7 +34,6 @@ public class Lib {
 
     public static Properties ReadConfigData(String environment, String application) throws Exception{
           File file= new File("src/main/resources" + "//" + environment + "//" + application + ".xml");
-  //      File file = new File("src/main/resources/INT/THB.xml");
         FileInputStream fileInput= new FileInputStream(file);
         configdata.loadFromXML(fileInput);
         return configdata;
