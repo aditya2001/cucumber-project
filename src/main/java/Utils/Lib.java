@@ -1,8 +1,27 @@
 package Utils;
 
 
+import com.ntrs.thb.TestOutbound;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.entity.InputStreamEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.DefaultHttpRequestRetryHandler;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.oltu.oauth2.client.OAuthClient;
+import org.apache.oltu.oauth2.client.URLConnectionClient;
+import org.apache.oltu.oauth2.client.request.OAuthClientRequest;
+import org.apache.oltu.oauth2.client.response.OAuthJSONAccessTokenResponse;
+import org.apache.oltu.oauth2.common.OAuth;
+import org.apache.oltu.oauth2.common.message.types.GrantType;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -18,9 +37,16 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import javax.net.ssl.*;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.security.GeneralSecurityException;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.cert.X509Certificate;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.*;
@@ -31,6 +57,9 @@ public class Lib {
     public static ThreadLocal<String> browser= new ThreadLocal<String>();
     public static Logger logger = LogManager.getLogger(Lib.class.getName());
     static String testName;
+    public static String bearerValue=null;
+    public static String finalToken=null;
+    private static CloseableHttpClient httpClient;
 
     public static Properties ReadConfigData(String environment, String application) throws Exception{
           File file= new File("src/main/resources" + "//" + environment + "//" + application + ".xml");
@@ -427,6 +456,142 @@ public class Lib {
             i++;
         }
         return extractedKey;
+    }
+
+    public static String httpGet(String getURL) throws Exception {
+        org.testng.Assert.assertNotNull(bearerValue, "Authorization token should not be null");
+        String result=null;
+        HttpGet httpGet= new HttpGet(getURL);
+
+        httpGet.setHeader("Accept", "application/json");
+        httpGet.setHeader("Authorization", "bearervalue");
+        Thread.sleep(4000);
+        final HttpResponse getResponse= httpClient.execute(httpGet);
+        HttpEntity getResEntity = getResponse.getEntity();
+        if (getResponse.getStatusLine().getStatusCode() ==200) {
+            result= EntityUtils.toString(getResEntity, "UTF-8");
+        }
+
+        getResponse.getEntity().getContent().close();
+        return result;
+    }
+
+
+    public static String httpPost(String fileName, String postURL) throws Exception{
+//        org.testng.Assert.assertNotNull(bearerValue, "Authorization token should not be null");
+        String result=null;
+        File input= new File(fileName);
+        HttpPost httppost= new HttpPost(postURL);
+        setAccessTokenValue();
+        httppost.setHeader("Content-Type", "application/json");
+        httppost.setHeader("Authorization", bearerValue);
+        InputStreamEntity reqEntity= new InputStreamEntity(new FileInputStream(input), -1);
+        reqEntity.setContentType("application/json");
+        reqEntity.setChunked(true);
+        httppost.setEntity(reqEntity);
+        final CloseableHttpResponse postResponse= httpClient.execute(httppost);
+        HttpEntity resEntity= postResponse.getEntity();
+        if (postResponse.getStatusLine().getStatusCode() ==201){
+            result=EntityUtils.toString(resEntity, "UTF-8");
+            System.out.println("orderId"+result);
+        }
+        return result;
+    }
+
+
+    public static List<String> getFiles(String folderName) {
+        List<String> fileNames = new ArrayList<>();
+        File folder = new File(folderName);
+        for (final File fileEntry : folder.listFiles()) {
+            if (!fileEntry.isAbsolute()) {
+                fileNames.add(fileEntry.getAbsolutePath());
+            }
+        }
+        return fileNames;
+    }
+
+
+
+    public static String getBase64Encoded(String id, String password) throws UnsupportedEncodingException {
+        return Base64.getEncoder().encodeToString((id + ":" + password).getBytes("UTF-8"));
+    }
+
+    public static void setAccessTokenValue() {
+        try {
+            OAuthClient client = new OAuthClient(new URLConnectionClient());
+
+            String encodedValue = getBase64Encoded(TestOutbound.CLIENT_ID, TestOutbound.CLIENT_SECRET);
+
+            OAuthClientRequest request = OAuthClientRequest
+                    .tokenLocation(TestOutbound.TOKEN_REQUEST_URL)
+                    .setGrantType(GrantType.CLIENT_CREDENTIALS)
+                    .buildBodyMessage();
+            request.addHeader("Authorization", "Basic " +encodedValue);
+
+            OAuthJSONAccessTokenResponse oAuthResponse = client.accessToken(request,OAuth.HttpMethod.POST, OAuthJSONAccessTokenResponse.class);
+            finalToken = oAuthResponse.getAccessToken();
+            org.testng.Assert.assertNotNull(finalToken, "finaltoken should not be null");
+            bearerValue= "Bearer " +finalToken;
+        }catch (Exception exn) {
+            exn.printStackTrace();
+
+        }finally {
+            if (bearerValue == null) {
+                bearerValue = "Bearer " + "M2Ptpdsfsdfsdfsdfsdfsdfsdf";
+            }
+        }
+
+    }
+
+    public static SSLConnectionSocketFactory getSSLConnectionSocketfactory()
+            throws NoSuchAlgorithmException, KeyManagementException {
+
+        SSLConnectionSocketFactory scf= null;
+        TrustManager[] trustAllCerts= new TrustManager[] { new X509TrustManager() {
+            public X509Certificate[] getAcceptedIssuers() {
+                return new X509Certificate[0];
+            }
+
+            public void checkClientTrusted(X509Certificate[] certs, String authType) {
+
+            }
+            public void checkServerTrusted(X509Certificate[] certs, String authType) {
+
+            }
+        } };
+
+        try {
+            SSLContext sc = SSLContext.getInstance("TLSv1.2");
+            sc.init(null, trustAllCerts, new SecureRandom());
+            HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+            HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
+                @Override
+                public boolean verify(String hostname, SSLSession session) {
+                    return true;
+                }
+            });
+            scf = new SSLConnectionSocketFactory(sc, new String[] { "TLSv1.2" }, null,
+                    SSLConnectionSocketFactory.getDefaultHostnameVerifier());
+        } catch (GeneralSecurityException e) {
+        }
+
+
+        return scf;
+    }
+
+
+
+    static {
+        try {
+            HttpClientBuilder clientBuilder = HttpClients.custom();
+            clientBuilder.setRetryHandler(new DefaultHttpRequestRetryHandler(3, false));
+
+            httpClient = clientBuilder.setSSLSocketFactory(getSSLConnectionSocketfactory()).build();
+        } catch (KeyManagementException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
     }
 
 

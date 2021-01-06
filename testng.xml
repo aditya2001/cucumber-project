@@ -1,2 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd"><suite name="All Test Suite"><test verbose="2" preserve-order="true" name="C:/Users/adity/workspace/cucumber-project"><classes><class name="com.ntrs.thb.TestOutbound"><methods><include name="testOrders"/></methods></class></classes></test></suite>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <parameter name="environment" value="INT" />
+    <parameter name="application" value="THB" />
+    <test verbose="2" preserve-order="true" name="C:/Users/adity/workspace/cucumber-project">
+    <classes>
+        <class name="com.ntrs.thb.TestOutbound"/>
+    </classes>
+</test>
+</suite>
+
+
+
