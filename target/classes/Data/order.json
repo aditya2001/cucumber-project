@@ -1,11 +1,37 @@
 {
+  "id": "5O190127TN364715T",
+  "status": "PAYER_ACTION_REQUIRED",
   "intent": "CAPTURE",
   "purchase_units": [
     {
+      "reference_id": "d9f80740-38f0-11e8-b467-0ed5f89f718b",
+      "shipping": {
+        "address": {
+          "address_line_1": "2211 N First Street",
+          "address_line_2": "Building 17",
+          "admin_area_2": "San Jose",
+          "admin_area_1": "CA",
+          "postal_code": "95131",
+          "country_code": "US"
+        }
+      },
       "amount": {
+        "id": "0AW2184448108334S",
+        "status": "CREATED",
         "currency_code": "USD",
-        "value": "600.00"
+        "value": "100.00"
+      },
+      "seller_protection": {
+        "status": "ELIGIBLE",
+        "dispute_categories": [
+          "ITEM_NOT_RECEIVED",
+          "UNAUTHORIZED_TRANSACTION"
+        ]
+      },
+      "payee": {
+        "email_address": "payee@example.com"
       }
     }
-  ]
+  ],
+  "create_time": "2018-04-01T21:18:49Z"
 }

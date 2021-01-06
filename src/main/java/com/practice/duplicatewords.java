@@ -13,6 +13,7 @@ public class duplicatewords {
         HashMap<String, String> hm = new HashMap<>();
         String[] words= str.split(" ");
 
+
         for (String word : words) {
             if (!hm.containsKey(word)){
                 hm.put(word,"1");

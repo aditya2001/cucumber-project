@@ -1,6 +1,7 @@
 package Utils;
 
 
+import com.google.gson.Gson;
 import com.ntrs.thb.TestOutbound;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -38,9 +39,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import javax.net.ssl.*;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.net.URL;
 import java.security.GeneralSecurityException;
 import java.security.KeyManagementException;
@@ -592,6 +591,38 @@ public class Lib {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
+    }
+
+
+    public static Map<String, Object> convertJsonToMap(String jsonString) {
+        Gson gson = new Gson();
+
+        Map<String, Object> jsonMap = gson.<Map<String, Object>> fromJson(jsonString, Map.class);
+        return jsonMap;
+    }
+
+    @SuppressWarnings("rawtypes")
+    public static List convertJsonToList(String jsonString) {
+        Gson gson = new Gson();
+
+
+        List jsonMap = gson.<List> fromJson(jsonString, List.class);
+        return jsonMap;
+    }
+
+    public static String readTextFIle(String file) throws IOException {
+        FileReader fr = new FileReader(file);
+        BufferedReader reader = new BufferedReader(fr);
+        String line = null;
+        StringBuilder stringBuilder = new StringBuilder();
+        String ls = System.getProperty("line.separator");
+
+        while ((line = reader.readLine()) != null) {
+            stringBuilder.append(line);
+            stringBuilder.append(ls);
+        }
+        reader.close();
+        return stringBuilder.toString();
     }
 
 
