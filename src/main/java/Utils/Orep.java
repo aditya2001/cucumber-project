@@ -35,6 +35,7 @@ public class Orep {
        public static final String Code = Constants.XPATH + "~" + "//body[contains(@class,'pace-done')]/div[contains(@class,'wrapper')]/div[@id='content']/div[contains(@class,'panel panel-default')]/div[contains(@class,'panel-body')]/div[contains(@class,'xcrud')]/div[contains(@class,'xcrud-container')]/div[contains(@class,'xcrud-ajax')]/div[contains(@class,'xcrud-view')]/table[contains(@class,'table')]/tbody/tr[3]/td[2]";
        public static final String Rate = Constants.XPATH + "~" + "/html[1]/body[1]/div[2]/div[1]/div[2]/div[3]/div[1]/div[1]/div[1]/div[2]/table[1]/tbody[1]/tr[4]/td[2]";
        public static final String Active = Constants.XPATH + "~" + "//td[contains(text(),'Yes')]";
+       public static final String Print = Constants.XPATH + "~" + "//a[contains(text(),'Print')]";
 
      }
 

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testsuite failures="0" name="cucumber.runtime.formatter.JUnitFormatter" skipped="0" tests="1" time="47.925531">
+<testcase classname="UI-Test" name="1 When user adds a new currency" time="47.925531">
+<system-out><![CDATA[Given Application is launched using "URL"...................................passed
+When Admin User sends a Logon message to UI.................................passed
+When User adds a new currency with..........................................passed
+Then Validate the currency details with.....................................passed
+Then delete the added currency..............................................passed
+When click to Print.........................................................passed
+]]></system-out>
+</testcase>
+</testsuite>

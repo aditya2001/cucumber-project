@@ -27,10 +27,7 @@ public class TestOutbound {
     public void testOrders() throws Exception {
         List<String> fileNames = Lib.getFiles("src/main/resources/Data/");
         for (String fileName : fileNames) {
-
-            File file = new File("fileName");
-          String jsonString = "{'header': {'alerts': [{'AlertID': '2', 'TSExpires': null, 'Target': '1', 'Text': 'woot', 'Type': '1'}, {'AlertID': '3', 'TSExpires': null, 'Target': '1', 'Text': 'woot', 'Type': '1'}], 'session': '0bc8d0835f93ac3ebbf11560b2c5be9a'}, 'result': '4be26bc400d3c'}";
-
+        String jsonString=Lib.readJsonFile(fileName);
            Map<String, Object> hm = Lib.convertJsonToMap(jsonString);
             System.out.println(hm);
 

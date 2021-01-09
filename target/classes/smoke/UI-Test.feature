@@ -15,6 +15,7 @@ Feature: UI-Test
       | Name | Symbol | Code | Rate | Active |
       | KWD  | KWD    | KWD  | 3    | Yes    |
     Then delete the added currency
+    When click to Print
 
 
   Scenario: 2 When user adds a new currency
@@ -39,6 +40,10 @@ Feature: UI-Test
       | Name | Symbol | Code | Rate | Active |
       | KWD  | KWD    | KWD  | 3    | Yes    |
     Then delete the added currency
+
+
+    Scenario: 4 When user clicks on print to open a new Window
+
 
 
 

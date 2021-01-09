@@ -390,6 +390,7 @@ public class Lib {
         WebElement dropdownlist= getObject(driver,ObjName);
         Select dropdownval= new Select(dropdownlist);
         dropdownval.selectByVisibleText(valueToSelect);
+
     }
 
     public static void selectDropDownByIndex(WebDriver driver, String ObjName, int index) throws Exception{
@@ -407,7 +408,8 @@ public class Lib {
         element.click();
     }
 
-    public static void click(WebDriver driver, String objName){
+    public static void click(WebDriver driver, String objName)
+    {
         getObject(driver,objName).click();
     }
 
@@ -415,6 +417,23 @@ public class Lib {
         Alert alert = driver.switchTo().alert();
         alert.accept();
    }
+
+
+    public static void dismissAlert(WebDriver driver){
+        Alert alert = driver.switchTo().alert();
+        alert.dismiss();
+    }
+
+    public static void sendToAlert(WebDriver driver){
+        Alert alert = driver.switchTo().alert();
+        alert.sendKeys("txt");
+    }
+
+    public static boolean verifyIsDisplayed(WebDriver driver, String objName){
+       boolean val = getObject(driver,objName).isDisplayed();
+          return val;
+    }
+
 
     public static java.sql.Connection setUpDBConnection(String DB, String url, String username, String password)
             throws ClassNotFoundException, SQLException {
@@ -611,6 +630,21 @@ public class Lib {
     }
 
     public static String readTextFIle(String file) throws IOException {
+        FileReader fr = new FileReader(file);
+        BufferedReader reader = new BufferedReader(fr);
+        String line = null;
+        StringBuilder stringBuilder = new StringBuilder();
+        String ls = System.getProperty("line.separator");
+
+        while ((line = reader.readLine()) != null) {
+            stringBuilder.append(line);
+            stringBuilder.append(ls);
+        }
+        reader.close();
+        return stringBuilder.toString();
+    }
+
+    public static String readJsonFile(String file) throws IOException {
         FileReader fr = new FileReader(file);
         BufferedReader reader = new BufferedReader(fr);
         String line = null;

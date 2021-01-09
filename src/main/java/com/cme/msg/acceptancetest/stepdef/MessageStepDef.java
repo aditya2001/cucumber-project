@@ -22,6 +22,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -125,6 +126,21 @@ public class MessageStepDef {
     }
 
 
+    @When("^click to Print$")
+    public void clickToPrint() {
+        String mainwindow = driver.getWindowHandle();
+        Lib.getObject(driver, Orep.View.Print).click();
+        System.out.println(mainwindow);
+        Set<String> s = driver.getWindowHandles();
+        System.out.println(s);
+        for (String childwindow : s){
+            if (!childwindow.equalsIgnoreCase(mainwindow)) {
+                driver.switchTo().window(childwindow);
+                driver.close();
+            }
+        }
+        driver.switchTo().window(mainwindow);
+    }
 }
 
 
