@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <Property name="basePath">src/main/resources/log</Property>
+    </Properties>
+    <Appenders>
+        <!-- Console Appender -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+
+<!--        &lt;!&ndash; Rolling File Appender &ndash;&gt;-->
+<!--        <RollingFile name="RollingFileDebugLog">-->
+<!--            <FileName>${basePath}/automation_${date:yyyyMMddhhmmss}.log</FileName>-->
+<!--            <FilePattern>${basePath}/automation_${date:yyyyMMddhhmmss}.log.%03i</FilePattern>-->
+<!--            <PatternLayout>-->
+<!--                <Pattern>%d [%t] %p %c - %m%n</Pattern>-->
+<!--            </PatternLayout>-->
+<!--            <Policies>-->
+<!--                <SizeBasedTriggeringPolicy size="100MB" />-->
+<!--            </Policies>-->
+<!--            <ThresholdFilter level="DEBUG"/>-->
+<!--            <DefaultRolloverStrategy max="5"/>-->
+<!--        </RollingFile>-->
+
+    </Appenders>
+    <Loggers>
+        <Logger name="com.cme" level="ALL" additivity="false">
+            <AppenderRef ref="RollingFileDebugLog"/>
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Root level="ALL">
+            <AppenderRef ref="Console"/>
+<!--            <AppenderRef ref="RollingFileDebugLog"/>-->
+        </Root>
+    </Loggers>
+</Configuration>

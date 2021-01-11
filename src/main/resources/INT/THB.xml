@@ -5,7 +5,7 @@
     <entry key="URL">http://phptravels.net/admin</entry>
     <entry key="USERNAME">admin@phptravels.com</entry>
     <entry key="PASSWORD">demoadmin</entry>
-    <entry key="getURL">https://api.sandbox.paypal.com/v2/checkout/orders</entry>
+    <entry key="getURL">https://api.sandbox.paypal.com/v2/checkout/orders/</entry>
     <entry key="postURL">https://api.sandbox.paypal.com/v2/checkout/orders</entry>
     <entry key="TOKEN_REQUEST_URL">https://api-m.sandbox.paypal.com/v1/oauth2/token</entry>
     <entry key="CLIENT_ID">AddIVf0W_n5AJthpgPdGu5t_q-9RfzcCbfcmRHskih8DhhgpwrFB2DNIBWGMt2wxToB6Knkg7Sbw_TnA</entry>

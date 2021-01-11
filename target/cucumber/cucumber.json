@@ -11,7 +11,7 @@
         "steps": [
           {
             "result": {
-              "duration": 4345019000,
+              "duration": 4799388400,
               "status": "passed"
             },
             "line": 5,
@@ -33,20 +33,20 @@
         "before": [
           {
             "result": {
-              "duration": 237800,
-              "status": "passed"
-            },
-            "match": {
-              "location": "Hooks.beforeScenario()"
-            }
-          },
-          {
-            "result": {
-              "duration": 85300,
+              "duration": 269000,
               "status": "passed"
             },
             "match": {
               "location": "Hooks.beforeSmokeScenario()"
+            }
+          },
+          {
+            "result": {
+              "duration": 86300,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Hooks.beforeScenario()"
             }
           }
         ],
@@ -57,7 +57,7 @@
         "after": [
           {
             "result": {
-              "duration": 116800,
+              "duration": 183900,
               "status": "passed"
             },
             "match": {
@@ -70,101 +70,13 @@
         "steps": [
           {
             "result": {
-              "duration": 5357711300,
+              "duration": 63049901000,
               "status": "passed"
             },
             "line": 10,
             "name": "Admin User sends a Logon message to UI",
             "match": {
               "location": "MessageStepDef.adminUserSendsALogonMessageToUI()"
-            },
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "duration": 3080548300,
-              "status": "passed"
-            },
-            "line": 11,
-            "name": "User adds a new currency with",
-            "match": {
-              "location": "MessageStepDef.userAddsANewCurrency(DataTable)"
-            },
-            "rows": [
-              {
-                "cells": [
-                  "Name",
-                  "Symbol",
-                  "Code",
-                  "Rate",
-                  "Active"
-                ]
-              },
-              {
-                "cells": [
-                  "KWD",
-                  "KWD",
-                  "KWD",
-                  "3",
-                  "Yes"
-                ]
-              }
-            ],
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "duration": 32182266900,
-              "status": "passed"
-            },
-            "line": 14,
-            "name": "Validate the currency details with",
-            "match": {
-              "location": "MessageStepDef.validateTheCurrencyDetailsWith(DataTable)"
-            },
-            "rows": [
-              {
-                "cells": [
-                  "Name",
-                  "Symbol",
-                  "Code",
-                  "Rate",
-                  "Active"
-                ]
-              },
-              {
-                "cells": [
-                  "KWD",
-                  "KWD",
-                  "KWD",
-                  "3",
-                  "Yes"
-                ]
-              }
-            ],
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 601051600,
-              "status": "passed"
-            },
-            "line": 17,
-            "name": "delete the added currency",
-            "match": {
-              "location": "MessageStepDef.deleteTheAddedCurrency()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 2348126000,
-              "status": "passed"
-            },
-            "line": 18,
-            "name": "click to Print",
-            "match": {
-              "location": "MessageStepDef.clickToPrint()"
             },
             "keyword": "When "
           }

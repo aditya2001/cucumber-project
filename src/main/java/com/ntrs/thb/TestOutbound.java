@@ -1,7 +1,10 @@
 package com.ntrs.thb;
 
 import Utils.Lib;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -18,22 +21,34 @@ public class TestOutbound {
     public static String CLIENT_ID = "";
     public static String CLIENT_SECRET = "";
     public static String REDIRECT_URI = "";
-//14H608399V869045G
+    private static final String LOG4J_PROPERTIES = "src/main/resources/UAT/log4j2.xml";
+
         //https://api.sandbox.paypal.com/v2/checkout/orders/14H608399V869045G
 
         //https://api.sandbox.paypal.com/v2/checkout/orders
 
     @Test(enabled = true, priority = 1)
-    public void testOrders() throws Exception {
+    public void createOrder() throws Exception {
+
         List<String> fileNames = Lib.getFiles("src/main/resources/Data/");
         for (String fileName : fileNames) {
-        String jsonString=Lib.readJsonFile(fileName);
-           Map<String, Object> hm = Lib.convertJsonToMap(jsonString);
-            System.out.println(hm);
+            String jsonString = Lib.readJsonFile(fileName);
+            Map<String, Object> inputMap = Lib.convertJsonToMap(jsonString);
+            inputMap.remove("create_time");
+            System.out.println(inputMap);
+            String orderId = Lib.httpPost(fileName, postURL);
+            System.out.println(orderId);
+            String output = Lib.httpGet(getURL, orderId);
+            System.out.println(output);
+            Map<String, Object> outputMap = Lib.convertJsonToMap(output);
 
-//            String orderId = Lib.httpPost(fileName, postURL);
-//            System.out.println(orderId);
+                Lib.compareJSON(outputMap, inputMap);
+
         }
+    }
+    @BeforeTest
+    public void beforeTest() throws Exception{
+        System.setProperty("log4j.configurationFile", LOG4J_PROPERTIES);
     }
 
     @Parameters({"environment", "application"})

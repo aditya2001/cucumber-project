@@ -1,0 +1,16 @@
+{
+  "intent": "CAPTURE",
+  "purchase_units": [
+    {
+      "reference_id": "d9f80740-38f0-11e8-b467-0ed5f89f718b",
+      "amount": {
+        "currency_code": "USD",
+        "value": "600.00"
+      },
+      "payee": {
+        "email_address": "payee@example.com"
+      }
+    }
+  ],
+  "create_time": "2018-04-01T21:18:49Z"
+}

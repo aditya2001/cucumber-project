@@ -15,8 +15,10 @@ import org.apache.http.impl.client.DefaultHttpRequestRetryHandler;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.config.Configurator;
 import org.apache.oltu.oauth2.client.OAuthClient;
 import org.apache.oltu.oauth2.client.URLConnectionClient;
 import org.apache.oltu.oauth2.client.request.OAuthClientRequest;
@@ -206,7 +208,7 @@ public class Lib {
             }
 
         } catch (Exception e) {
-               logger.error("Unable to locate object", e);
+               logger.error("Unable to locate object" + objName, e);
         }
         return element;
 
@@ -461,7 +463,26 @@ public class Lib {
         for (String key : expectedKeys) {
             logger.info("Expected value for key :" + key + " = " + expectedResult.get(key) + "\"");
             logger.info("Actual value for key :" + key + " = " + actualResult.get(key) + "\"");
-            Assert.assertEquals("Validation failed", actualResult.get(key), expectedResult.get(key));
+            Assert.assertEquals("Validation failed for keys" , actualResult.get(key), expectedResult.get(key));
+        }
+    }
+
+    public static void compareJSON(Map<String, Object> actualResult, Map<String, Object> expectedResult) {
+        String[] expectedKeys = getKeys(expectedResult);
+        for (String key : expectedKeys) {
+            Configurator.setLevel(logger.getName(), Level.DEBUG);
+            logger.info("Comparing expected and actual values");
+            logger.info("Expected value for key :" + key + " = " + expectedResult.get(key) + "\"");
+            logger.info("Actual value for key :" + key + " = " + actualResult.get(key) + "\"");
+            try {
+                Assert.assertEquals(actualResult.get(key), expectedResult.get(key));
+
+            } catch (AssertionError  e) {
+                logger.error("Expected value for key :" + key + " = " + expectedResult.get(key) + "\"");
+                logger.error("Actual value for key :" + key + " = " + actualResult.get(key) + "\"");
+                logger.error("***********************************************************\n\n");
+
+            }
         }
     }
 
@@ -476,13 +497,26 @@ public class Lib {
         return extractedKey;
     }
 
-    public static String httpGet(String getURL) throws Exception {
+    public static String[] getKeys(Map<String, Object> expectedResult){
+        String[] extractedKey = new String[expectedResult.size()];
+        Set<String> keySet = expectedResult.keySet();
+        int i=0;
+        for (String key :keySet){
+            extractedKey[i]=key;
+            i++;
+        }
+        return extractedKey;
+    }
+
+
+    public static String httpGet(String getURL, String transactionId) throws Exception {
         org.testng.Assert.assertNotNull(bearerValue, "Authorization token should not be null");
         String result=null;
+        getURL = getURL + transactionId;
         HttpGet httpGet= new HttpGet(getURL);
 
         httpGet.setHeader("Accept", "application/json");
-        httpGet.setHeader("Authorization", "bearervalue");
+        httpGet.setHeader("Authorization", bearerValue);
         Thread.sleep(4000);
         final HttpResponse getResponse= httpClient.execute(httpGet);
         HttpEntity getResEntity = getResponse.getEntity();
@@ -511,9 +545,9 @@ public class Lib {
         HttpEntity resEntity= postResponse.getEntity();
         if (postResponse.getStatusLine().getStatusCode() ==201){
             result=EntityUtils.toString(resEntity, "UTF-8");
-            System.out.println("orderId"+result);
+            System.out.println(result);
         }
-        return result;
+        return result = result.substring(result.indexOf(":")+2, result.indexOf(",")-1);
     }
 
 

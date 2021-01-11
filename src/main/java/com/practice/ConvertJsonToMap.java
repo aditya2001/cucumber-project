@@ -8,7 +8,7 @@ public class ConvertJsonToMap {
 
     public static void main(String[] args) throws IOException {
 
-        FileReader fr = new FileReader("C:\\Users\\adity\\workspace\\Test\\order.json");
+        FileReader fr = new FileReader("C:\\Users\\adity\\workspace\\Test\\order-1.json");
         BufferedReader br = new BufferedReader(fr);
         StringBuilder sb = new StringBuilder();
         String line = null;
