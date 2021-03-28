@@ -19,5 +19,6 @@ import cucumber.api.junit.Cucumber;
                 "src/main/resources/smoke/UI-Test.feature"
         })
 
-public class RunCucumberTest extends CucumberRunner {
+public class
+RunCucumberTest extends CucumberRunner {
 }

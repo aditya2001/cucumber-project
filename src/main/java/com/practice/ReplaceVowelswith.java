@@ -9,16 +9,17 @@ public class ReplaceVowelswith {
         System.out.println("Enter String");
         StringBuilder sb = new StringBuilder();
         String str = sc.nextLine();
+        String newString ="";
          for (int i=0; i<=str.length()-1; i++){
              char ch = str.charAt(i);
              if (ch == 'a' || ch == 'e' || ch == 'i' || ch == '0' || ch == 'u') {
-                 sb.append("_");
+                 newString = newString + "-";
              }
                  else {
-                     sb.append(ch);
+                 newString = newString + ch;
                  }
              }
-         System.out.println(sb.toString());
+         System.out.println(newString);
          }
 
          }

@@ -16,6 +16,7 @@ Feature: UI-Test
       | KWD  | KWD    | KWD  | 3    | Yes    |
     Then delete the added currency
     When click to Print
+    Then Take Screenshot
 
 
   Scenario: 2 When user adds a new currency

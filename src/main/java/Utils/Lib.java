@@ -19,6 +19,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.config.Configurator;
+import org.apache.logging.log4j.core.util.*;
 import org.apache.oltu.oauth2.client.OAuthClient;
 import org.apache.oltu.oauth2.client.URLConnectionClient;
 import org.apache.oltu.oauth2.client.request.OAuthClientRequest;
@@ -39,6 +40,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.apache.commons.io.FileUtils;
 
 import javax.net.ssl.*;
 import java.io.*;
@@ -678,19 +680,49 @@ public class Lib {
         return stringBuilder.toString();
     }
 
-    public static String readJsonFile(String file) throws IOException {
-        FileReader fr = new FileReader(file);
-        BufferedReader reader = new BufferedReader(fr);
+    public static String readJsonFile(String file){
+
+        FileReader fr = null;
+        BufferedReader reader = null;
         String line = null;
         StringBuilder stringBuilder = new StringBuilder();
         String ls = System.getProperty("line.separator");
-
-        while ((line = reader.readLine()) != null) {
-            stringBuilder.append(line);
-            stringBuilder.append(ls);
+        try {
+            fr = new FileReader(file);
+            reader = new BufferedReader(fr);
+            while ((line = reader.readLine()) != null) {
+                stringBuilder.append(line);
+                stringBuilder.append(ls);
+            }
         }
-        reader.close();
+        catch(FileNotFoundException e){
+            e.printStackTrace();
+        }
+        catch(Exception e){
+            e.getCause();
+        }
+        finally {
+            try {
+                reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         return stringBuilder.toString();
+    }
+
+    public static void takeSnapshot(WebDriver driver, String path) throws IOException {
+
+        TakesScreenshot screenShot = ((TakesScreenshot)driver);
+        File file = screenShot.getScreenshotAs(OutputType.FILE);
+
+        //Move image file to new destination
+        File DestFile=new File(path);
+        //Copy file at destination
+//        FileUtils.copyFile(file, DestFile);
+
+        FileUtils.copyFileToDirectory(file, DestFile);
     }
 
 

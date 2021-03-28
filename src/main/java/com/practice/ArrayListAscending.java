@@ -15,18 +15,16 @@ public class ArrayListAscending {
 
         int[] a = new int[Size];
         System.out.println("Enter element Of an Array...");
-        for (int j = 0; j < Size; j++) {
-            a[j] = user_input.nextInt();
+        for (int i = 0; i < Size; i++) {
+            a[i] = user_input.nextInt();
         }
 
-        for (int index = 0; index < a.length; index++) {
-            for (int j = index + 1; j < a.length; j++) {
-                if (a[index] > a[j]) {
-                    a[index] =a[j];
-                    a[j]= a[index];
-//                    temp = a[index];
-//                    a[index] = a[j];
-//                    a[j] = temp;
+        for (int i = 0; i < a.length; i++) {
+            for (int j = i + 1; j < a.length; j++) {
+                if (a[i] > a[j]) {
+                    temp = a[i];
+                    a[i] = a[j];
+                    a[j] = temp;
                 }
             }
         }

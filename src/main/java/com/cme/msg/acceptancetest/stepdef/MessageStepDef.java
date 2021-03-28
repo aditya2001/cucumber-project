@@ -19,6 +19,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -140,6 +141,11 @@ public class MessageStepDef {
             }
         }
         driver.switchTo().window(mainwindow);
+    }
+
+    @Then("^Take Screenshot$")
+    public void takeScreenshot() throws IOException {
+        Lib.takeSnapshot(driver, "C:\\Users\\adity\\OneDrive\\Desktop\\data");
     }
 }
 

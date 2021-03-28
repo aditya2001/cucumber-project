@@ -9,15 +9,16 @@ public class CountOfVowels {
         System.out.println("Enter String");
         String newString = "";
         String str = sc.nextLine();
-         int count =0;
+         int vcount =0;
         for (int i=0; i<=str.length()-1; i++) {
             char ch = str.charAt(i);
             if (ch == 'a' || ch == 'e' || ch == 'i' || ch == '0' || ch == 'u') {
-               count++;
+//               vcount++;
+                System.out.println(ch);
             }
 
 
         }
-        System.out.println(count);
+//        System.out.println(vcount);
     }
 }
