@@ -2,12 +2,12 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="All Test Suite" duration-ms="11757" started-at="2021-03-28T18:45:49Z" finished-at="2021-03-28T18:46:01Z">
+  <suite name="All Test Suite" duration-ms="11601" started-at="2021-03-28T23:12:59Z" finished-at="2021-03-28T23:13:11Z">
     <groups>
     </groups>
-    <test name="C:/Users/adity/workspace/cucumber-project" duration-ms="11757" started-at="2021-03-28T18:45:49Z" finished-at="2021-03-28T18:46:01Z">
+    <test name="C:/Users/adity/workspace/cucumber-project" duration-ms="11601" started-at="2021-03-28T23:12:59Z" finished-at="2021-03-28T23:13:11Z">
       <class name="com.ntrs.thb.TestOutbound">
-        <test-method status="PASS" signature="beforeSuite(java.lang.String, java.lang.String)[pri:0, instance:com.ntrs.thb.TestOutbound@60addb54]" name="beforeSuite" is-config="true" duration-ms="803" started-at="2021-03-28T13:45:48Z" finished-at="2021-03-28T13:45:49Z">
+        <test-method status="PASS" signature="beforeSuite(java.lang.String, java.lang.String)[pri:0, instance:com.ntrs.thb.TestOutbound@60addb54]" name="beforeSuite" is-config="true" duration-ms="800" started-at="2021-03-28T18:12:59Z" finished-at="2021-03-28T18:12:59Z">
           <params>
             <param index="0">
               <value>
@@ -23,11 +23,11 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeSuite -->
-        <test-method status="PASS" signature="beforeTest()[pri:0, instance:com.ntrs.thb.TestOutbound@60addb54]" name="beforeTest" is-config="true" duration-ms="0" started-at="2021-03-28T13:45:49Z" finished-at="2021-03-28T13:45:49Z">
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:com.ntrs.thb.TestOutbound@60addb54]" name="beforeTest" is-config="true" duration-ms="0" started-at="2021-03-28T18:12:59Z" finished-at="2021-03-28T18:12:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeTest -->
-        <test-method status="PASS" signature="createOrder()[pri:0, instance:com.ntrs.thb.TestOutbound@60addb54]" name="createOrder" duration-ms="11751" started-at="2021-03-28T13:45:49Z" finished-at="2021-03-28T13:46:01Z">
+        <test-method status="PASS" signature="createOrder()[pri:0, instance:com.ntrs.thb.TestOutbound@60addb54]" name="createOrder" duration-ms="11601" started-at="2021-03-28T18:12:59Z" finished-at="2021-03-28T18:13:11Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createOrder -->
