@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="1" failed="0" total="1" passed="0">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Surefire suite" duration-ms="12" started-at="2021-03-28T23:45:47Z" finished-at="2021-03-28T23:45:47Z">
+    <groups>
+    </groups>
+    <test name="Surefire test" duration-ms="12" started-at="2021-03-28T23:45:47Z" finished-at="2021-03-28T23:45:47Z">
+      <class name="com.ntrs.thb.TestOutbound">
+        <test-method status="FAIL" signature="beforeSuite(java.lang.String, java.lang.String)[pri:0, instance:com.ntrs.thb.TestOutbound@13c78c0b]" name="beforeSuite" is-config="true" duration-ms="0" started-at="2021-03-28T18:45:47Z" finished-at="2021-03-28T18:45:47Z">
+          <exception class="org.testng.TestNGException">
+            <message>
+              <![CDATA[
+Parameter 'environment' is required by @Configuration on method beforeSuite but has not been marked @Optional or defined
+]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.testng.TestNGException: 
+Parameter 'environment' is required by @Configuration on method beforeSuite but has not been marked @Optional or defined
+
+	at org.testng.internal.Parameters.createParameters(Parameters.java:155)
+	at org.testng.internal.Parameters.createParameters(Parameters.java:355)
+	at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:86)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:199)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:138)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:277)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1198)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1123)
+	at org.testng.TestNG.run(TestNG.java:1031)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:135)
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.executeMulti(TestNGDirectoryTestSuite.java:193)
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.execute(TestNGDirectoryTestSuite.java:94)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:146)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:384)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:345)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:126)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:418)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.testng.TestNGException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeSuite -->
+        <test-method status="SKIP" signature="beforeTest()[pri:0, instance:com.ntrs.thb.TestOutbound@13c78c0b]" name="beforeTest" is-config="true" duration-ms="0" started-at="2021-03-28T18:45:47Z" finished-at="2021-03-28T18:45:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method status="SKIP" signature="createOrder()[pri:0, instance:com.ntrs.thb.TestOutbound@13c78c0b]" name="createOrder" duration-ms="4" started-at="2021-03-28T18:45:47Z" finished-at="2021-03-28T18:45:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createOrder -->
+      </class> <!-- com.ntrs.thb.TestOutbound -->
+    </test> <!-- Surefire test -->
+  </suite> <!-- Surefire suite -->
+</testng-results>

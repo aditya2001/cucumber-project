@@ -1,7 +1,6 @@
 com\practice\Datatype.class
 com\practice\ReplaceVowelswithUnderscore.class
 Utils\Lib$2.class
-com\cme\msg\acceptancetest\stepdef\Product.class
 com\practice\ReplaceVowelsWithUsingReplace.class
 com\practice\Chick.class
 com\practice\ArrSort.class
@@ -9,7 +8,6 @@ com\practice\TotalCharsInString.class
 com\practice\Occurence.class
 com\practice\Testing.class
 com\practice\RemoveDuplicateCharFromString.class
-com\cme\msg\acceptancetest\CucumberRunner.class
 com\practice\CheckPalindrome.class
 com\practice\Float.class
 Utils\Lib$1.class
@@ -19,7 +17,6 @@ com\practice\Reverseword.class
 com\practice\PrimeNumber.class
 com\practice\UniqueChars.class
 com\practice\DuplicateCharactersInString.class
-com\cme\msg\acceptancetest\RunCucumberTest.class
 com\practice\ReplaceVowelsInAFile.class
 Utils\Lib.class
 Utils\Orep$CredentialClass.class
@@ -29,7 +26,6 @@ Utils\Constants.class
 com\practice\CountOfVowels.class
 com\practice\duplicatewords.class
 Utils\Orep.class
-com\cme\msg\acceptancetest\stepdef\Hooks.class
 com\practice\DistinctCharsCount.class
 com\practice\WordCountInString.class
 com\practice\ArrLoop.class
@@ -51,5 +47,4 @@ Utils\DBConnection\JDBConnectionInfo.class
 com\practice\StoreTextInHashMap.class
 com\practice\testfile.class
 com\practice\Test12.class
-com\cme\msg\acceptancetest\stepdef\MessageStepDef.class
 Utils\Orep$HomePage.class
